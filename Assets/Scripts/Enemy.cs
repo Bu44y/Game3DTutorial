@@ -8,14 +8,19 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     Transform target;
     NavMeshAgent nav;
-
     Animator anim;
+    GameManager manager;
 
     void Start()
     {
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        if (manager == null)
+        {
+            GameObject temp = GameObject.FindGameObjectWithTag("GameController") as GameObject;
+            manager = temp.GetComponent<GameManager>();
         }
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
@@ -34,6 +39,7 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
             nav.isStopped = transform;
             anim.SetTrigger("isDeath");
+            manager.killEnemy();
         }
     }
 }
