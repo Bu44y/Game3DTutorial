@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Player : MonoBehaviour
     public GameObject spawnPoint,weapon;
 
     public int health = 100;
+    public Slider slider;
 
     void Start()
     {
@@ -105,8 +107,8 @@ public class Player : MonoBehaviour
         {
             anim.Play("Damage");
             health -= 10;
+            slider.value = health;
             Enemy.checkAttack = false;
-            Debug.Log(health);
         }
     }
 }

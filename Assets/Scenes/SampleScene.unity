@@ -499,6 +499,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 836279556}
   weapon: {fileID: 5231342896590157504, guid: 70862f76ab2eec242a85d7c4a682213b, type: 3}
   health: 100
+  slider: {fileID: 1717761338}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,6 +1361,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
