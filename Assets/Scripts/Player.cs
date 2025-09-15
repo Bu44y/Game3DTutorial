@@ -11,6 +11,11 @@ public class Player : MonoBehaviour
 
     Animator anim;
 
+    public float fireRate = 0.4f;
+    public float nextFire = 0.0f;
+
+    public GameObject spawnPoint,weapon;
+
     void Start()
     {
         character = GetComponent<CharacterController>();
@@ -31,6 +36,7 @@ public class Player : MonoBehaviour
             }
             character.Move(moveDirction * Time.deltaTime);
             rotatePlayer();
+            playerAttack();
         }
     }
 
@@ -52,5 +58,31 @@ public class Player : MonoBehaviour
         {
             this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
         }
+    }
+
+    void playerAttack()
+    {
+        if (Input.GetMouseButton(0) && Time.time>nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            shootWeapon();
+        }
+    }
+
+    void shootWeapon()
+    {
+        anim.SetBool("isAttack",true);
+        StartCoroutine(resetAttack());
+    }
+
+    IEnumerator resetAttack()
+    {
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("isAttack", false);
+    }
+
+    void createArrow()
+    {
+        Instantiate(weapon, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 }
