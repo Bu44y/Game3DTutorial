@@ -103,6 +103,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("EnemyWeapon") && Enemy.checkAttack)
         {
+            anim.Play("Damage");
             health -= 10;
             Enemy.checkAttack = false;
             Debug.Log(health);
