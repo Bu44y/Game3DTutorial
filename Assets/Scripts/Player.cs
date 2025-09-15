@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public GameObject spawnPoint,weapon;
 
+    public int health = 100;
+
     void Start()
     {
         character = GetComponent<CharacterController>();
@@ -95,5 +97,14 @@ public class Player : MonoBehaviour
     void createArrow()
     {
         Instantiate(weapon, spawnPoint.transform.position, spawnPoint.transform.rotation);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("EnemyWeapon"))
+        {
+            health -= 10;
+            Debug.Log(health);
+        }
     }
 }
