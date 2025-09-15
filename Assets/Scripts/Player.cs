@@ -32,9 +32,16 @@ public class Player : MonoBehaviour
             moveDirction *= speed;
             if (Input.GetAxis("Horizontal") !=0 || Input.GetAxis("Vertical") != 0)
             {
-                anim.SetBool("isWalk", true);
+                if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+                {
+                    anim.SetBool("isWalk", true);
+                    character.Move(moveDirction * Time.deltaTime);
+                }
             }
-            character.Move(moveDirction * Time.deltaTime);
+            else
+            {
+                this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            }
             rotatePlayer();
             playerAttack();
         }
@@ -42,21 +49,24 @@ public class Player : MonoBehaviour
 
     void rotatePlayer()
     {
-        if (Input.GetAxis("Horizontal") < 0)
+        if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
         {
-            this.transform.rotation = Quaternion.Euler(0.0f, -90f, 0.0f);
-        }
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            this.transform.rotation = Quaternion.Euler(0.0f, 90f, 0.0f);
-        }
-        if (Input.GetAxis("Vertical") < 0)
-        {
-            this.transform.rotation = Quaternion.Euler(0.0f, -180f, 0.0f);
-        }
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                this.transform.rotation = Quaternion.Euler(0.0f, -90f, 0.0f);
+            }
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                this.transform.rotation = Quaternion.Euler(0.0f, 90f, 0.0f);
+            }
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                this.transform.rotation = Quaternion.Euler(0.0f, -180f, 0.0f);
+            }
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            }
         }
     }
 
