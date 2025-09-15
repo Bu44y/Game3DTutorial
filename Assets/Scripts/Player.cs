@@ -101,9 +101,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("EnemyWeapon"))
+        if (other.gameObject.CompareTag("EnemyWeapon") && Enemy.checkAttack)
         {
             health -= 10;
+            Enemy.checkAttack = false;
             Debug.Log(health);
         }
     }

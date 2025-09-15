@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     NavMeshAgent nav;
     Animator anim;
     GameManager manager;
+    public static bool checkAttack = false;
 
     void Start()
     {
@@ -56,5 +57,10 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+    }
+
+    public void beginAttack()
+    {
+        checkAttack = true;
     }
 }
