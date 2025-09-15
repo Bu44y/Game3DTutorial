@@ -30,6 +30,14 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         nav.destination = target.position;
+        if (nav.remainingDistance <= nav.stoppingDistance)
+        {
+            anim.SetBool("isAttack", true);
+        }
+        else
+        {
+            anim.SetBool("isAttack", false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
