@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     private CharacterController character;
     public float speed = 6f;
-    private Vector3 moveDirction;
+    private Vector3 moveDirction = Vector3.zero;
 
     Animator anim;
 
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             {
                 this.transform.rotation = Quaternion.Euler(0.0f, -90f, 0.0f);
             }
-            if (Input.GetAxis("Horizontal") > 0)
+            else if (Input.GetAxis("Horizontal") > 0)
             {
                 this.transform.rotation = Quaternion.Euler(0.0f, 90f, 0.0f);
             }
@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
             {
                 this.transform.rotation = Quaternion.Euler(0.0f, -180f, 0.0f);
             }
-            if (Input.GetAxis("Vertical") > 0)
+            else if (Input.GetAxis("Vertical") > 0)
             {
                 this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
             }
@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isAttack", false);
+        nextFire = 0.0f;
     }
 
     void createArrow()
