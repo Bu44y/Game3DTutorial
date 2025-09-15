@@ -22,18 +22,20 @@ public class Player : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip hit,die;
+    public static bool isAlive = true;
 
     void Start()
     {
         character = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
+        isAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (character.isGrounded)
+        if (character.isGrounded && isAlive)
         {
             anim.SetBool("isWalk", false);
             moveDirction = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
@@ -52,6 +54,13 @@ public class Player : MonoBehaviour
             }
             rotatePlayer();
             playerAttack();
+        }
+
+        if (health <= 0 && isAlive)
+        {
+            health = 0;
+            isAlive = false;
+            audioSource.PlayOneShot(die);
         }
     }
 

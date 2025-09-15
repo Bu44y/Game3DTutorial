@@ -13,7 +13,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         spawnTime += Time.deltaTime;
-        if (spawnTime >= delay)
+        if (spawnTime >= delay && Player.isAlive)
         {
             int index = Random.Range(0, spawnPoint.Length);
             Instantiate(enemy, spawnPoint[index].transform.position, spawnPoint[index].transform.rotation);

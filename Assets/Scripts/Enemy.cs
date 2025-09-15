@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         nav.destination = target.position;
-        if (nav.remainingDistance <= nav.stoppingDistance)
+        if (nav.remainingDistance <= nav.stoppingDistance && Player.isAlive)
         {
             anim.SetBool("isAttack", true);
         }
