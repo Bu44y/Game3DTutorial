@@ -20,10 +20,14 @@ public class Player : MonoBehaviour
     public int health = 100;
     public Slider slider;
 
+    private AudioSource audioSource;
+    public AudioClip hit,die;
+
     void Start()
     {
         character = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -107,6 +111,7 @@ public class Player : MonoBehaviour
         {
             anim.Play("Damage");
             health -= 10;
+            audioSource.PlayOneShot(hit);
             slider.value = health;
             Enemy.checkAttack = false;
         }
