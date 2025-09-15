@@ -40,6 +40,13 @@ public class Enemy : MonoBehaviour
             nav.isStopped = transform;
             anim.SetTrigger("isDeath");
             manager.killEnemy();
+            StartCoroutine(removeEnemy());
         }
+    }
+
+    IEnumerator removeEnemy()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }
