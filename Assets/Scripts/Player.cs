@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip hit,die;
     public static bool isAlive = true;
+
+    public ParticleSystem blood;
 
     void Start()
     {
@@ -61,6 +64,8 @@ public class Player : MonoBehaviour
             health = 0;
             isAlive = false;
             audioSource.PlayOneShot(die);
+            anim.SetTrigger("isDeath");
+            StartCoroutine(GameOver());
         }
     }
 
@@ -85,6 +90,12 @@ public class Player : MonoBehaviour
                 this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
             }
         }
+    }
+
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("Home");
     }
 
     void playerAttack()
@@ -121,6 +132,7 @@ public class Player : MonoBehaviour
             anim.Play("Damage");
             health -= 10;
             audioSource.PlayOneShot(hit);
+            blood.Play();
             slider.value = health;
             Enemy.checkAttack = false;
         }
