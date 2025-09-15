@@ -8,14 +8,15 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemy;
     public float spawnTime = 0f;
     public float delay = 5;
+    public GameObject[] spawnPoint;
 
     void Update()
     {
         spawnTime += Time.deltaTime;
         if (spawnTime >= delay)
         {
-            GameObject enemyClone = Instantiate(enemy) as GameObject;
-            enemyClone.transform.position = new Vector3(Random.Range(-15f, 15f), 0.0f, 20f);
+            int index = Random.Range(0, spawnPoint.Length);
+            Instantiate(enemy, spawnPoint[index].transform.position, spawnPoint[index].transform.rotation);
             spawnTime -= delay;
         }
     }

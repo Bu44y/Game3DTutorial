@@ -1047,6 +1047,10 @@ MonoBehaviour:
   enemy: {fileID: 6551945344105349010, guid: b582941d8f132d142b41156542e62286, type: 3}
   spawnTime: 0
   delay: 5
+  spawnPoint:
+  - {fileID: 110659180}
+  - {fileID: 1705240917}
+  - {fileID: 1785304072}
 --- !u!1 &1705240917
 GameObject:
   m_ObjectHideFlags: 0
