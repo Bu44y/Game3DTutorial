@@ -18,5 +18,10 @@ public class GameManager : MonoBehaviour
     public void killEnemy()
     {
         score += 10;
+
+        if (score >= PlayerPrefs.GetInt("Highscore",0))
+        {
+            PlayerPrefs.SetInt("Highscore",score);
+        }
     }
 }
